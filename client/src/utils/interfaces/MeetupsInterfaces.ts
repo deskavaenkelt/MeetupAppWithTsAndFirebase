@@ -12,7 +12,3 @@ export interface MeetupItemProps {
 	address: string,
 	description: string,
 }
-
-export interface ArrayOfMeetups {
-	meetups: Array<MeetupItemProps>
-}
