@@ -6,6 +6,7 @@ import Backdrop from '../ui/Backdrop'
 import Card from '../ui/card/Card'
 import Modal from '../ui/Modal'
 import css from './MeetupItem.module.css'
+import UpdateMeetupFormModal from './UpdateMeetupFormModal'
 
 interface Meetup {
 	meetup: MeetupItemProps
@@ -14,7 +15,8 @@ interface Meetup {
 
 const MeetupItem: FC<Meetup> = ({meetup, refreshList}) => {
 	const {id, title, image, address, description} = meetup
-	const [modalIsOpen, setModalIsOpen] = useState<boolean>(false)
+	const [modalIsOpenUpdate, setModalIsOpenUpdate] = useState<boolean>(false)
+	const [modalIsOpenDelete, setModalIsOpenDelete] = useState<boolean>(false)
 	const favoritesContext = useContext(FavoritesContext)
 	const itemIsFavorite = favoritesContext?.itemIsFavorite(id)
 	
@@ -22,18 +24,33 @@ const MeetupItem: FC<Meetup> = ({meetup, refreshList}) => {
 		itemIsFavorite ? favoritesContext?.removeFavorite(id) : favoritesContext?.addFavorite(meetup)
 	}
 	
-	const toggleModalHandler = () => {
-		setModalIsOpen(true)
+	const toggleModalHandlerUpdate = () => {
+		setModalIsOpenUpdate(true)
 	}
 	
-	const closeModalHandler = () => {
-		setModalIsOpen(false)
+	const toggleModalHandlerDelete = () => {
+		setModalIsOpenDelete(true)
 	}
 	
-	const confirmModalHandler = () => {
+	const closeModalHandlerUpdate = () => {
+		setModalIsOpenUpdate(false)
+	}
+	
+	const closeModalHandlerDelete = () => {
+		setModalIsOpenDelete(false)
+	}
+	
+	const confirmModalHandlerUpdate = () => {
+		closeModalHandlerUpdate()
+		if (refreshList) {
+			refreshList()
+		}
+	}
+	
+	const confirmModalHandlerDelete = () => {
 		FirebaseService.deleteMeetup(id)
 			.then(() => {
-				closeModalHandler()
+				closeModalHandlerDelete()
 				if (refreshList) {
 					refreshList()
 				}
@@ -59,11 +76,19 @@ const MeetupItem: FC<Meetup> = ({meetup, refreshList}) => {
 						onClick={ toggleFavoriteStatusHandler }>
 						{ itemIsFavorite ? 'Remove from favorites' : 'Add to Favorite' }
 					</button>
-					<button onClick={ toggleModalHandler }>Delete Meetup</button>
+					<button onClick={ toggleModalHandlerUpdate }>Update Meetup</button>
+					<button onClick={ toggleModalHandlerDelete }>Delete Meetup</button>
 				</div>
 				<div>
-					{ modalIsOpen && <Modal onCancel={ closeModalHandler } onConfirm={ confirmModalHandler }/> }
-					{ modalIsOpen && <Backdrop onCancel={ closeModalHandler }/> }
+					{ modalIsOpenUpdate && <UpdateMeetupFormModal onCancel={ closeModalHandlerUpdate }
+                                                                  onConfirm={ confirmModalHandlerUpdate }
+                                                                  oldMeetupData={ meetup }/> }
+					{ modalIsOpenUpdate && <Backdrop onCancel={ closeModalHandlerUpdate }/> }
+				</div>
+				<div>
+					{ modalIsOpenDelete && <Modal onCancel={ closeModalHandlerDelete }
+                                                  onConfirm={ confirmModalHandlerDelete }/> }
+					{ modalIsOpenDelete && <Backdrop onCancel={ closeModalHandlerDelete }/> }
 				</div>
 			</Card>
 		</li>
