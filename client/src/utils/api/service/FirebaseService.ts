@@ -10,6 +10,10 @@ const FirebaseService = {
 	
 	getAllMeetups: () => {
 		return http.get<Array<MeetupItemProps>>(meetupsUrl)
+	},
+	
+	deleteMeetup: (id: string) => {
+		return http.delete(`/meetups/${ id }.json`)
 	}
 }
 

@@ -42,7 +42,9 @@ const AllMeetupsView = () => {
 	return (
 		<>
 			<h1>All Meetups</h1>
-			{ receivedMeetups.length === 0 ? <h1>No meetups yet</h1> : <MeetupList meetups={ receivedMeetups }/> }
+			{ receivedMeetups.length === 0
+				? <h1>No meetups yet</h1>
+				: <MeetupList meetups={ receivedMeetups } refreshList={ fetchAllMeetups }/> }
 		</>
 	)
 }
