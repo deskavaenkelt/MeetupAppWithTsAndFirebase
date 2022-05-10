@@ -32,8 +32,7 @@ const MeetupItem: FC<Meetup> = ({meetup, refreshList}) => {
 	
 	const confirmModalHandler = () => {
 		FirebaseService.deleteMeetup(id)
-			.then(response => {
-				console.log(response.data)
+			.then(() => {
 				closeModalHandler()
 				if (refreshList) {
 					refreshList()
