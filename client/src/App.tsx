@@ -1,10 +1,12 @@
 import React from 'react'
+import Navigation from './components/navigation/Navigation'
+import Routing from './routes/Routing'
 
 function App() {
 	return (
-		<>
-			<h1>Meet up App</h1>
-		</>
+		<Routing>
+			<Navigation/>
+		</Routing>
 	)
 }
 
