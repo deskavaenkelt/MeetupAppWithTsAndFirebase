@@ -1,4 +1,5 @@
 import { FC } from 'react'
+import Card from '../ui/card/Card'
 import css from './MeetupItem.module.css'
 
 export interface MeetupItemProps {
@@ -18,6 +19,7 @@ const MeetupItem: FC<Meetup> = ({meetup}) => {
 	
 	return (
 		<li className={css.item}>
+			<Card>
 			<div className={css.image}>
 				<img src={image} alt={title}/>
 			</div>
@@ -29,6 +31,7 @@ const MeetupItem: FC<Meetup> = ({meetup}) => {
 			<div className={css.actions}>
 				<button>To Favorites</button>
 			</div>
+			</Card>
 		</li>
 	)
 }
