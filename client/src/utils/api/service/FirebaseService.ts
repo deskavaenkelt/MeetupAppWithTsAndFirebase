@@ -1,5 +1,5 @@
+import { CreateMeetupObject, MeetupItemProps } from '../../interfaces/MeetupsInterfaces'
 import http from '../FirebaseApi'
-import { CreateMeetupObject } from '../../interfaces/MeetupsInterfaces'
 
 const meetupsUrl = '/meetups.json'
 
@@ -9,7 +9,7 @@ const FirebaseService = {
 	},
 	
 	getAllMeetups: () => {
-		return http.get<CreateMeetupObject[]>(meetupsUrl)
+		return http.get<Array<MeetupItemProps>>(meetupsUrl)
 	}
 }
 

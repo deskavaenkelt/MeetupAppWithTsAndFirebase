@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom'
-import NewMeetupForm  from '../components/meetups/NewMeetupForm'
+import NewMeetupForm from '../components/meetups/NewMeetupForm'
 import RoutingPath from '../routes/RoutingPath'
 import FirebaseService from '../utils/api/service/FirebaseService'
 import { CreateMeetupObject } from '../utils/interfaces/MeetupsInterfaces'
@@ -10,8 +10,7 @@ const NewMeetupView = () => {
 	
 	const addMeetupHandler = (meetupData: CreateMeetupObject) => {
 		FirebaseService.createMeetup(meetupData)
-			.then((response) => {
-				console.log(response.data)
+			.then(() => {
 				navigate(RoutingPath.allMeetupsView)
 			})
 			.catch((error) => {
