@@ -1,14 +1,7 @@
 import { FC } from 'react'
+import { MeetupItemProps } from '../../utils/interfaces/MeetupsInterfaces'
 import Card from '../ui/card/Card'
 import css from './MeetupItem.module.css'
-
-export interface MeetupItemProps {
-	id: string,
-	title: string,
-	image: string,
-	address: string,
-	description: string,
-}
 
 interface Meetup {
 	meetup: MeetupItemProps

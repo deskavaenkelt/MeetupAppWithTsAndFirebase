@@ -1,8 +1,13 @@
-import { useRef } from 'react'
-import css from './NewMeetupForm.module.css'
+import { FC, useRef } from 'react'
+import { CreateMeetupObject } from '../../utils/interfaces/MeetupsInterfaces'
 import Card from '../ui/card/Card'
+import css from './NewMeetupForm.module.css'
 
-const NewMeetupForm = () => {
+interface OnAddMeetup {
+	onAddMeetup: (meetup: CreateMeetupObject) => void
+}
+
+const NewMeetupForm: FC<OnAddMeetup> = ({onAddMeetup}) => {
 	const titleInputRef = useRef<HTMLInputElement>(null)
 	const imageInputRef = useRef<HTMLInputElement>(null)
 	const addressInputRef = useRef<HTMLInputElement>(null)
@@ -16,14 +21,14 @@ const NewMeetupForm = () => {
 		const enteredAddress = addressInputRef.current?.value
 		const enteredDescription = descriptionInputRef.current?.value
 		
-		const meetupData = {
-			title: enteredTitle,
-			image: enteredImage,
-			address: enteredAddress,
-			description: enteredDescription
+		const meetupData: CreateMeetupObject = {
+			title: String(enteredTitle),
+			image: String(enteredImage),
+			address: String(enteredAddress),
+			description: String(enteredDescription)
 		}
 		
-		console.log(meetupData)
+		onAddMeetup(meetupData)
 	}
 	
 	return (
@@ -31,19 +36,19 @@ const NewMeetupForm = () => {
 			<form className={ css.form } onSubmit={ submitHandler }>
 				<div className={ css.control }>
 					<label htmlFor='title'>Meetup Title</label>
-					<input type='text' required id='title' ref={titleInputRef}/>
+					<input type='text' required id='title' ref={ titleInputRef }/>
 				</div>
 				<div className={ css.control }>
 					<label htmlFor='image'>Meetup Image</label>
-					<input type='url' required id='image' ref={imageInputRef}/>
+					<input type='url' required id='image' ref={ imageInputRef }/>
 				</div>
 				<div className={ css.control }>
 					<label htmlFor='address'>Address</label>
-					<input type='text' required id='address' ref={addressInputRef}/>
+					<input type='text' required id='address' ref={ addressInputRef }/>
 				</div>
 				<div className={ css.control }>
 					<label htmlFor='description'>Description</label>
-					<textarea id='description' required rows={ 5 } ref={descriptionInputRef}></textarea>
+					<textarea id='description' required rows={ 5 } ref={ descriptionInputRef }></textarea>
 				</div>
 				<div className={ css.actions }>
 					<button>Add Meetup</button>

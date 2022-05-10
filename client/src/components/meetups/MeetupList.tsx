@@ -1,10 +1,7 @@
 import { FC } from 'react'
+import { ArrayOfMeetups } from '../../utils/interfaces/MeetupsInterfaces'
 import css from './MeetupList.module.css'
-import MeetupItem, { MeetupItemProps } from './MeetupItem'
-
-interface ArrayOfMeetups {
-	meetups: Array<MeetupItemProps>
-}
+import MeetupItem from './MeetupItem'
 
 const MeetupList: FC<ArrayOfMeetups> = ({meetups}) => {
 	return (
