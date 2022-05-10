@@ -2,7 +2,7 @@ import { createContext, ReactNode, useState } from 'react'
 import { MeetupItemProps } from '../interfaces/MeetupsInterfaces'
 
 interface FavoritesContextInterface {
-	favorites: Array<MeetupItemProps>
+	favorites: Array<MeetupItemProps> | undefined
 	totalFavorites: number
 	addFavorite: (meetup: MeetupItemProps) => void
 	removeFavorite: (meetupId: string) => void
