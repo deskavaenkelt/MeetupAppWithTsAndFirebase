@@ -9,7 +9,7 @@ const Navigation = () => {
 	
 	return (
 		<nav className={ css.header }>
-			<div className={ css.logo }>React Meetups</div>
+			<div className={ css.logo }>React Meetups with TypeScript</div>
 			<ul>
 				<li><Link to={ RoutingPath.allMeetupsView }>All Meetups</Link></li>
 				<li><Link to={ RoutingPath.newMeetupView }>Add New Meetup</Link></li>
