@@ -14,7 +14,7 @@ const Routing = (props: { children?: ReactNode }) => {
 			<Routes>
 				<Route path={ RoutingPath.wildCardView } element={ <Navigate to={ RoutingPath.notFoundView }/> }/>
 				<Route path={ RoutingPath.notFoundView } element={ <PageNotFoundView/> }/>
-				<Route path={ RoutingPath.startView } element={ <AllMeetupsView/> }/>
+				<Route path={ RoutingPath.allMeetupsView } element={ <AllMeetupsView/> }/>
 				<Route path={ RoutingPath.newMeetupView } element={ <NewMeetupView/> }/>
 				<Route path={ RoutingPath.favoritesView } element={ <FavoritesView/> }/>
 			</Routes>

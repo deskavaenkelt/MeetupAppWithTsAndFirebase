@@ -1,7 +1,7 @@
 const RoutingPath = {
 	wildCardView: '*',
 	notFoundView: '/404',
-	startView: '/',
+	allMeetupsView: '/',
 	newMeetupView: '/newMeetup',
 	favoritesView: '/favorites',
 }
